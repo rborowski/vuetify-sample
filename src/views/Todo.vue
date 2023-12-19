@@ -11,7 +11,13 @@
       @click:append-inner="addTask"
       @keydown.enter.exact="addTask"
     />
-    <h1 v-if="tasks.length === 0" class="text-center text-grey"> No todos added yet. Let's add some</h1>
+    <div v-if="tasks.length === 0" class="text-primary no-tasks text-center">
+      <v-icon
+        icon="mdi-check"
+        size="100"
+      ></v-icon>  
+      <h1>No tasks. Let's add some</h1> 
+    </div>
     <v-list v-else  select-strategy="classic" class="px-0">
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
@@ -53,16 +59,16 @@ import { ref } from "vue";
 
 const newTaskTitle = ref('')
 const tasks = ref([
-  {
-  id: "1a",
-  title: "Wake up",
-  done: false
-  }, 
-  {
-  id: "2a",
-  title: "Clean",
-  done: false
-  }
+  // {
+  // id: "1a",
+  // title: "Wake up",
+  // done: false
+  // }, 
+  // {
+  // id: "2a",
+  // title: "Clean",
+  // done: false
+  // }
 ])
 
 function doneTask(taskId) {
@@ -85,3 +91,15 @@ function addTask() {
 }
 
 </script>
+
+
+<style lang="sass">
+  .no-tasks
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    opacity: 0.5
+
+
+</style>
