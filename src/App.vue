@@ -37,12 +37,14 @@
 
     <v-main>
       <router-view />
+      <snackbar/>
     </v-main>
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import Snackbar from "./components/Shared/Snackbar.vue";
 
 const drawer = ref(null)
 </script>
