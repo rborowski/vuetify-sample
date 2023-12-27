@@ -18,18 +18,29 @@
 
       <template v-slot:append>
         <v-btn
-          @click.stop="tasksStore.deleteTask(task.id)"
+          @click.stop="showDialog.delete = true"
           color="blue-lighten-1"
           icon="mdi-delete"
           variant="text"></v-btn
         >
       </template>
     </v-list-item>
-    <v-divider></v-divider>
+    <v-divider/>
+    <dialog-delete
+      v-if="showDialog.delete"
+      @close="showDialog.delete = false"
+      @deleteRequest="tasksStore.deleteTask(task.id)"
+    />
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useTasksStore } from "../../store/TasksStore";
+import DialogDelete from './Dialogs/DialogDelete.vue'
+
+const showDialog = ref({
+  delete: false
+})
 
 const tasksStore = useTasksStore()
 const props = defineProps({
