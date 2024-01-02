@@ -20,26 +20,31 @@
       </v-list>
     </v-menu>  
     <dialog-delete
-    v-if="showDialog.delete"
-    @close="showDialog.delete = false"
-  />
+      v-if="showDialog.delete"
+      @close="showDialog.delete = false"
+    />
+    <dialog-edit
+      v-if="showDialog.edit"
+      @close="showDialog.edit = false"
+    />
   </div>
-
 </template>
 
 <script setup>
 import { ref } from "vue";
 import DialogDelete from './Dialogs/DialogDelete.vue'
+import DialogEdit from './Dialogs/DialogEdit.vue'
 
 const showDialog = ref({
-  delete: false
+  delete: false,
+  edit: false
 })
 
 const items = [
         { title: 'Edit',
           icon: 'mdi-pencil', 
           click(){
-            console.log("edit")
+            showDialog.value.edit = true
           }
         },
         { title: 'Due date' ,

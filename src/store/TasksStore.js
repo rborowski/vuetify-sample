@@ -27,6 +27,12 @@ export const useTasksStore = defineStore("tasks", () => {
     mainStore.showSnackbar("Note deleted")
   }
 
+  function editTask(taskId, newTaskTitle) {
+    const mainStore = useMainStore();
+    tasks.value.find((task) => task.id === taskId).title = newTaskTitle
+    mainStore.showSnackbar("Note edited")
+  }
+
   function addTask(taskTitle) {
     const mainStore = useMainStore();
     tasks.value.push({
@@ -41,6 +47,7 @@ export const useTasksStore = defineStore("tasks", () => {
     tasks,
     doneTask,
     deleteTask,
+    editTask,
     addTask
   };
 });
