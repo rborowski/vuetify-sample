@@ -10,7 +10,7 @@
         <v-btn @click="$emit('close')" color="blue-darken-1" variant="text">
           No
         </v-btn>
-        <v-btn @click="$emit('deleteRequest')" color="red-darken-1" variant="text">
+        <v-btn @click="tasksStore.deleteTask(task.id)" color="red-darken-1" variant="text">
           Delete
         </v-btn>
       </v-card-actions>
@@ -18,5 +18,9 @@
   </v-dialog>
 </template>
 <script setup>
-const emit = defineEmits(["deleteRequest", "close"])
+import { useTasksStore } from "../../../store/TasksStore";
+import { inject } from "vue";
+const tasksStore = useTasksStore()
+
+const task = inject("task")
 </script>
