@@ -24,10 +24,6 @@
     </v-btn>
 </template>
 
-<style scoped >
-
-</style> 
-
 <script setup>
 import {ref} from 'vue'
 import { useTasksStore } from "../../store/TasksStore";
@@ -36,12 +32,9 @@ const tasksStore = useTasksStore()
 
 const showSearch = ref(false)
 
-
-
 function onClickOutside() {
   if (tasksStore.searchInput) return
   showSearch.value = false
 }
-
 </script>
 
