@@ -17,22 +17,18 @@
       <template v-slot:image>
         <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
       </template>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-app-bar-title>{{ $route.name }}</v-app-bar-title>
+      
+      <v-container class="d-flex flex-column h-100">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search/>
+        </v-row>
+        <v-row class="mt-3 align-center">
+          <v-app-bar-title class="ml-4">{{ $route.name }}</v-app-bar-title>
+        </v-row>
+      </v-container>
 
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -45,6 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 import Snackbar from "./components/Shared/Snackbar.vue";
+import Search from "./components/Tools/Search.vue";
 
 const drawer = ref(null)
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-list select-strategy="classic" class="px-0">
-    <div v-for="task in tasksStore.tasks" :key="task.id">
+    <div v-for="task in tasksStore.getTasks" :key="task.id">
       <task :task="task"/>
     </div>
   </v-list>

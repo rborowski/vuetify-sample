@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useMainStore } from "./MainStore";
 
 export const useTasksStore = defineStore("tasks", () => {
@@ -17,7 +17,14 @@ export const useTasksStore = defineStore("tasks", () => {
     dueDate: null
     }
   ])
-  
+
+  const searchInput = ref(null)
+
+  const getTasks = computed(() => {
+    if (!searchInput.value) return tasks.value
+    return tasks.value.filter((task) => task.title.match(new RegExp(searchInput.value, 'i')))
+  })
+
   function doneTask(taskId) {
     let task = tasks.value.filter((task) => task.id === taskId)[0]
     task.done = !task.done
@@ -54,6 +61,8 @@ export const useTasksStore = defineStore("tasks", () => {
 
   return {
     tasks,
+    getTasks,
+    searchInput,
     doneTask,
     deleteTask,
     editTaskTitle,
