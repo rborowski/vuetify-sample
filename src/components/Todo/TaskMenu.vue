@@ -27,6 +27,10 @@
       v-if="showDialog.edit"
       @close="showDialog.edit = false"
     />
+    <dialog-due-date
+      v-if="showDialog.dueDate"
+      @close="showDialog.dueDate = false"
+    />
   </div>
 </template>
 
@@ -34,10 +38,12 @@
 import { ref } from "vue";
 import DialogDelete from './Dialogs/DialogDelete.vue'
 import DialogEdit from './Dialogs/DialogEdit.vue'
+import DialogDueDate from "./Dialogs/DialogDueDate.vue";
 
 const showDialog = ref({
   delete: false,
-  edit: false
+  edit: false,
+  dueDate: false
 })
 
 const items = [
@@ -50,7 +56,7 @@ const items = [
         { title: 'Due date' ,
           icon: 'mdi-calendar',
           click(){
-            console.log("date")
+            showDialog.value.dueDate = true
           }
         },
         { title: 'Delete',

@@ -16,6 +16,10 @@
       {{ task.title}}
       </v-list-item-title>
       <template v-slot:append>
+        <v-list-item-subtitle v-if="task.dueDate">
+          <v-icon size="small">mdi-calendar</v-icon>
+          {{ format(task.dueDate, "dd.MM.yyyy") }}
+        </v-list-item-subtitle>
         <TaskMenu />
       </template>
     </v-list-item>
@@ -23,6 +27,7 @@
 </template>
 
 <script setup>
+import { format } from "date-fns";
 import { useTasksStore } from "../../store/TasksStore";
 import TaskMenu from "./TaskMenu.vue"
 import { provide } from "vue";

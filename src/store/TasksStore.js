@@ -7,12 +7,14 @@ export const useTasksStore = defineStore("tasks", () => {
     {
     id: "1a",
     title: "Wake up",
-    done: false
+    done: false,
+    dueDate: "2024-05-21"
     }, 
     {
     id: "2a",
     title: "Clean",
-    done: false
+    done: false,
+    dueDate: null
     }
   ])
   
@@ -27,10 +29,16 @@ export const useTasksStore = defineStore("tasks", () => {
     mainStore.showSnackbar("Note deleted")
   }
 
-  function editTask(taskId, newTaskTitle) {
+  function editTaskTitle(taskId, newTaskTitle) {
     const mainStore = useMainStore();
     tasks.value.find((task) => task.id === taskId).title = newTaskTitle
     mainStore.showSnackbar("Note edited")
+  }
+
+  function editTaskDueDate(taskId, dueDate) {
+    const mainStore = useMainStore();
+    tasks.value.find((task) => task.id === taskId).dueDate = dueDate
+    mainStore.showSnackbar("Due date set")
   }
 
   function addTask(taskTitle) {
@@ -38,7 +46,8 @@ export const useTasksStore = defineStore("tasks", () => {
     tasks.value.push({
       id: new Date().getTime(),
       title: taskTitle,
-      done: false
+      done: false,
+      dueDate: null
     })
     mainStore.showSnackbar("Note added")
   }
@@ -47,7 +56,8 @@ export const useTasksStore = defineStore("tasks", () => {
     tasks,
     doneTask,
     deleteTask,
-    editTask,
+    editTaskTitle,
+    editTaskDueDate,
     addTask
   };
 });

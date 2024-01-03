@@ -43,7 +43,7 @@ const invalidTaskTitle = computed( () => !newTaskTitle.value || newTaskTitle.val
 
 function handleEditSubmit() {
   if (invalidTaskTitle.value) return
-  tasksStore.editTask(task.id, newTaskTitle.value)
+  tasksStore.editTaskTitle(task.id, newTaskTitle.value)
   emit("close")
 }
 
