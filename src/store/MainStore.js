@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export const useMainStore = defineStore("main", () => {
   const snackbar = ref({show: false, message: "", timeout: 1500})
@@ -11,8 +11,11 @@ export const useMainStore = defineStore("main", () => {
     snackbar.value = {show: true, message, timeout}
   }
 
+  const appTitle = computed(() => import.meta.env.VITE_APP_TITLE)
+
   return {
     snackbar,
-    showSnackbar
+    showSnackbar,
+    appTitle
   };
 });

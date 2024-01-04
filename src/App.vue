@@ -19,7 +19,6 @@
         subtitle="@username"
       ></v-list-item>
       </v-img>
-      <!-- <v-list-item title="Vuetify Todo App" subtitle="Best Todo Ever"></v-list-item> -->
       
       <v-divider></v-divider>
       <v-list density="compact" nav>
