@@ -21,14 +21,17 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
-.separator {
-  animation: blinker 2s ease infinite;
-}
+<style scoped lang="sass">
+.separator
+  animation: blinker 2s ease infinite
 
-@keyframes blinker {
-  0%   { opacity: 0; }
-  49%  { opacity: 0; }
-  50%  { opacity: 1; }
-  100% { opacity: 1; }
-}</style>
+@keyframes blinker
+  0% 
+    opacity: 0 
+  49%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 1
+</style>

@@ -1,7 +1,26 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer :width="231" v-model="drawer">
-      <v-list-item title="Vuetify Todo App" subtitle="Best Todo Ever"></v-list-item>
+    <v-navigation-drawer mobile-breakpoint="sm" v-model="drawer">
+      <v-img
+      class="pa-4"
+      gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+      cover
+      height="150"
+      src="/mountains.jpg"
+      >
+      <v-avatar
+        alt="avatar"
+        image="/sample_avatar.jpg"
+        size="64"
+      ></v-avatar>
+      <v-list-item
+        class="text-white pl-1 mt-2"
+        title="User Name"
+        subtitle="@username"
+      ></v-list-item>
+      </v-img>
+      <!-- <v-list-item title="Vuetify Todo App" subtitle="Best Todo Ever"></v-list-item> -->
+      
       <v-divider></v-divider>
       <v-list density="compact" nav>
         <v-list-item :to="{ name: 'Todo' }" prepend-icon="mdi-format-list-checks" title="Todo"></v-list-item>
@@ -19,7 +38,7 @@
         <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
       </template>
       
-      <v-container class="d-flex flex-column h-100">
+      <v-container class="d-flex flex-column h-100 max-width-none">
         <v-row class="height20px">
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
@@ -42,10 +61,12 @@
   </v-app>
 </template>
 
-<style scoped>
-.height20px {
+<style lang="sass" scoped>
+.height20px 
   height: 20px
-};
+
+.max-width-none 
+  max-width: none
 </style>
 
 <script setup>
