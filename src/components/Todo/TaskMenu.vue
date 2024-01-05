@@ -39,6 +39,9 @@ import { ref } from "vue";
 import DialogDelete from './Dialogs/DialogDelete.vue'
 import DialogEdit from './Dialogs/DialogEdit.vue'
 import DialogDueDate from "./Dialogs/DialogDueDate.vue";
+import { useTasksStore } from "../../store/TasksStore.js";
+
+const tasksStore = useTasksStore()
 
 const showDialog = ref({
   delete: false,
@@ -57,6 +60,12 @@ const items = [
           icon: 'mdi-calendar',
           click(){
             showDialog.value.dueDate = true
+          }
+        },
+        { title: 'Reorder' ,
+          icon: 'mdi-arrow-split-horizontal',
+          click(){
+            tasksStore.draggable = !tasksStore.draggable
           }
         },
         { title: 'Delete',

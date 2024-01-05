@@ -50,13 +50,13 @@
           <live-date-time/>
         </v-row>
       </v-container>
-
     </v-app-bar>
-
-    <v-main>
-      <router-view />
-      <snackbar/>
-    </v-main>
+    <v-container class="d-flex pa-0 main-container">
+      <v-main>
+        <router-view />
+        <snackbar/>
+      </v-main>
+    </v-container>
   </v-app>
 </template>
 
@@ -66,6 +66,9 @@
 
 .max-width-none 
   max-width: none
+.main-container 
+  max-width: 1600px
+  position: relative
 </style>
 
 <script setup>

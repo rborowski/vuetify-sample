@@ -1,6 +1,8 @@
 <template>
     <v-list-item
       :class="{ 'bg-blue-lighten-5': task.done }"
+      :ripple="false"
+      class="white"
       @click="tasksStore.doneTask(task.id)"
     >
 
@@ -20,7 +22,15 @@
           <v-icon size="small">mdi-calendar</v-icon>
           {{ format(task.dueDate, "dd.MM.yyyy") }}
         </v-list-item-subtitle>
-        <TaskMenu />
+        <TaskMenu v-if="!tasksStore.draggable"/>
+        <v-btn
+          @click.stop
+          v-if="tasksStore.draggable"
+          class="handle"
+          color="primary"
+          icon="mdi-drag-horizontal-variant"
+          variant="text"
+        ></v-btn>
       </template>
     </v-list-item>
     <v-divider/>

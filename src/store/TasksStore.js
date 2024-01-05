@@ -59,6 +59,8 @@ export const useTasksStore = defineStore("tasks", () => {
     mainStore.showSnackbar("Note added")
   }
 
+  const draggable = ref(false)
+
   return {
     tasks,
     getTasks,
@@ -67,6 +69,7 @@ export const useTasksStore = defineStore("tasks", () => {
     deleteTask,
     editTaskTitle,
     editTaskDueDate,
-    addTask
+    addTask,
+    draggable
   };
 });
