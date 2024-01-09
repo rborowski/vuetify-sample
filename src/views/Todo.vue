@@ -1,6 +1,5 @@
 <template>
   <div class="todo">
-    <add-task-field />
     <no-tasks v-if="tasksStore.tasks.length === 0 && !tasksStore.isLoading" />
     <no-tasks v-else-if="tasksStore.computedTasks.length === 0 && !tasksStore.isLoading" :emptyList="false"/>
     <div v-else-if="tasksStore.isLoading" class="w-100 mt-4">
@@ -20,7 +19,6 @@
 <script setup>
 import { useTasksStore } from "../store/TasksStore";
 import { onMounted } from "vue";
-import AddTaskField from "../components/Todo/AddTaskField.vue";
 import TaskList from "../components/Todo/TaskList.vue";
 import NoTasks from "../components/Todo/NoTasks.vue";
 import ButtonDoneReorder from "../components/Todo/ButtonDoneReorder.vue";

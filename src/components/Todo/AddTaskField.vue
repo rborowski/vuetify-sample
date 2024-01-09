@@ -3,6 +3,7 @@
       class="pa-3"
       label="Add task"
       append-inner-icon="mdi-plus"
+      density="compact"
       variant="outlined"
       hide-details
       clearable

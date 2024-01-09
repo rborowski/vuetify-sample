@@ -31,7 +31,7 @@
       color="teal-darken-4"
       density="prominent"
       image="/mountains.jpg"
-      height="75"
+      :height="$route.path === '/' ? '110' : '75' "
     >
       <template v-slot:image>
         <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
@@ -46,8 +46,13 @@
         <v-row >
           <v-app-bar-title class="ml-4 text-h4">{{ $route.name }}</v-app-bar-title>
         </v-row>
-        <v-row>
+        <v-row class="height20px">
           <live-date-time/>
+        </v-row>
+        <v-row class="height90px">
+          <v-fade-transition hide-on-leave>
+            <add-task-field v-if="$route.path == '/'" />
+          </v-fade-transition>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -63,6 +68,8 @@
 <style lang="sass" scoped>
 .height20px 
   height: 20px
+.height60px 
+  height: 60px
 
 .max-width-none 
   max-width: none
@@ -76,6 +83,7 @@ import { ref } from 'vue'
 import Snackbar from "./components/Shared/Snackbar.vue";
 import Search from "./components/Tools/Search.vue";
 import LiveDateTime from "./components/Tools/LiveDateTime.vue";
+import AddTaskField from "./components/Todo/AddTaskField.vue";
 
 const drawer = ref(null)
 </script>
