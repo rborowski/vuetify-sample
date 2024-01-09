@@ -1,9 +1,10 @@
 <template>
   <v-list select-strategy="classic" class="px-0">
     <Sortable
-      :list="tasksStore.getTasks"
+      :list="tasksStore.computedTasks"
       item-key="id"
       :options="options"
+      @update="tasksStore.onOrderUpdate($event)"
     >
       <template #item="{element, index}">
         <div class="draggable" :key="element.id">

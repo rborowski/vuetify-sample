@@ -4,6 +4,7 @@ import { useMainStore } from "./MainStore";
 import Localbase from 'localbase'
 
 let db = new Localbase('db')
+db.config.debug = false
 
 
 export const useTasksStore = defineStore("tasks", () => {
@@ -12,11 +13,11 @@ export const useTasksStore = defineStore("tasks", () => {
   const searchInput = ref(null)
 
   const isLoading = ref(false)
-
-  const getTasks = computed(() => {
-    if (!searchInput.value) return tasks.value
-    return tasks.value.filter((task) => task.title.match(new RegExp(searchInput.value, 'i')))
-  })
+  
+  const computedTasks = computed(() =>{
+      if (!searchInput.value) return tasks.value
+      return tasks.value.filter((task) => task.title.match(new RegExp(searchInput.value, 'i')))
+    })
 
   async function doneTask(taskId) {
     let task = tasks.value.find((task) => task.id === taskId)
@@ -45,6 +46,14 @@ export const useTasksStore = defineStore("tasks", () => {
     mainStore.showSnackbar("Due date set")
   }
 
+  async function onOrderUpdate(event){
+    const item = tasks.value.splice(event.oldIndex, 1)[0];
+    tasks.value.splice(event.newIndex, 0, item);
+    const tasksArray = JSON.parse(JSON.stringify(tasks.value))
+    
+    await db.collection("tasks").set(tasksArray)
+  }
+
   async function addTask(taskTitle) {
     const mainStore = useMainStore();
     const newTask = {
@@ -54,7 +63,7 @@ export const useTasksStore = defineStore("tasks", () => {
       dueDate: null
     }
     await db.collection("tasks").add(newTask)
-    tasks.value.push(newTask)
+    computedTasks.value.push(newTask)
     mainStore.showSnackbar("Note added")
   }
 
@@ -68,7 +77,7 @@ export const useTasksStore = defineStore("tasks", () => {
 
   return {
     tasks,
-    getTasks,
+    computedTasks,
     isLoading,
     loadTasks,
     searchInput,
@@ -76,6 +85,7 @@ export const useTasksStore = defineStore("tasks", () => {
     deleteTask,
     editTaskTitle,
     editTaskDueDate,
+    onOrderUpdate,
     addTask,
     draggable
   };

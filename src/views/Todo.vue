@@ -2,7 +2,7 @@
   <div class="todo">
     <add-task-field />
     <no-tasks v-if="tasksStore.tasks.length === 0 && !tasksStore.isLoading" />
-    <no-tasks v-else-if="tasksStore.getTasks.length === 0 && !tasksStore.isLoading" :emptyList="false"/>
+    <no-tasks v-else-if="tasksStore.computedTasks.length === 0 && !tasksStore.isLoading" :emptyList="false"/>
     <div v-else-if="tasksStore.isLoading" class="w-100 mt-4">
       <v-progress-circular
       class="mx-auto d-block"
