@@ -8,6 +8,7 @@
       hide-details
       clearable
       v-model="newTaskTitle"
+      @click="tasksStore.draggable = false"
       @click:append-inner="handleTaskSubmit"
       @keydown.enter.exact="handleTaskSubmit"
     />

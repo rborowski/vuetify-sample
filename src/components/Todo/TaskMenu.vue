@@ -40,8 +40,10 @@ import DialogDelete from './Dialogs/DialogDelete.vue'
 import DialogEdit from './Dialogs/DialogEdit.vue'
 import DialogDueDate from "./Dialogs/DialogDueDate.vue";
 import { useTasksStore } from "../../store/TasksStore.js";
+import { useMainStore } from "../../store/MainStore";
 
 const tasksStore = useTasksStore()
+const mainStore = useMainStore();
 
 const showDialog = ref({
   delete: false,
@@ -65,6 +67,9 @@ const items = [
         { title: 'Reorder' ,
           icon: 'mdi-arrow-split-horizontal',
           click(){
+            if(tasksStore.searchInput) {
+              return mainStore.showSnackbar("Reordering is disabled in search mode")
+            }
             tasksStore.draggable = !tasksStore.draggable
           }
         },
